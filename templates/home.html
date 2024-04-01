@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Générateur de mot de passe</title>
+    <title>Ajouter un mot de passe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='templates/style.css') }}">
 </head>
 <body>
-    <h1>Générateur de mot de passe</h1>
-    <a href="{{ url_for('generate_password') }}">Générer un mot de passe</a>
+    <h1>Ajouter un mot de passe</h1>
+
+    <form method="POST">
+        <label for="password">Nouveau mot de passe:</label>
+        <input type="text" name="password" id="password" required>
+        <button type="submit" class="button">Ajouter</button>
+    </form>
+
+    <a href="{{ url_for('home') }}" class="button">Accueil</a>
+    <a href="{{ url_for('generate_password') }}" class="button">Générer un mot de passe</a>
+    <a href="{{ url_for('modify_password') }}" class="button">Modifier un mot de passe</a>
+    <a href="{{ url_for('delete_password') }}" class="button">Supprimer un mot de passe</a>
 </body>
 </html>
