@@ -1,0 +1,169 @@
+Excellent ! C'est une démarche très intelligente. Vous avez une architecture de base pour un site "vitrine" et vous voulez maintenant la transformer en une architecture pour une application "métier" (une application de suivi de distribution).
+
+Le point de départ (le sitemap de Lupaya Corp) est parfait pour la partie publique de votre projet, mais le cœur de votre application sera la partie privée, accessible après connexion.
+
+Améliorons et adaptons cette architecture en créant une distinction claire entre la "vitrine publique" et "l'application de gestion".
+
+Architecture Globale : Une Approche à Deux Niveaux
+
+Nous allons structurer votre projet en deux parties distinctes mais connectées :
+
+Le Site Web Public (Vitrine) : Basé sur votre structure initiale, il sert à présenter le projet, les partenaires (WV/PAM), les objectifs et à donner accès à l'application. C'est la face visible pour le grand public, les donateurs, les partenaires.
+
+L'Application de Gestion (Le Cœur du Système) : C'est la partie privée, accessible après connexion via le bouton "Espace de Connexion". C'est ici que toute la gestion, le suivi et l'analyse se font. L'architecture de cette partie sera entièrement basée sur vos besoins fonctionnels (Waybills, Bénéficiaires, Rapports, etc.).
+
+Partie 1 : Site Web Public (Adaptation de l'architecture initiale)
+
+Objectif : Informer, légitimer le projet et servir de portail d'accès.
+
+Navigation Principale (Publique)
+
+Accueil
+
+Titre : Suivi des Distributions Humanitaires - Partenariat World Vision & PAM.
+
+Chiffres Clés en Direct : (Très puissant !) Affichez des chiffres agrégés et anonymisés : Nombre total de bénéficiaires servis, Tonnes de nourriture distribuées, Nombre de sites de distribution actifs.
+
+Carte Interactive : Montrant les zones d'intervention (sans détailler les sites précis pour des raisons de sécurité).
+
+Nos Partenaires : Logos de World Vision, PAM, et autres acteurs.
+
+Appel à l'action principal : "Accéder à l'Espace de Gestion" (bouton de connexion).
+
+Notre Mission (Adaptation de "À Propos")
+
+Objectifs du Programme : Description du projet de distribution.
+
+Nos Partenaires : Page dédiée expliquant le rôle de chaque organisation.
+
+Zones d'Intervention : Informations générales sur les régions couvertes.
+
+Nos Opérations (Adaptation de "Services / Produits")
+
+Le Processus de Distribution : Schéma expliquant les étapes clés : Identification des besoins -> Logistique & Achat -> Distribution -> Suivi & Évaluation.
+
+Types d'Assistance Fournie : Description des kits (ex: "Kit alimentaire de base contenant farine, haricot, huile et sel").
+
+Impact & Actualités (Fusion de "Réalisations" et "Blog")
+
+Rapports Publics : Versions simplifiées des rapports d'impact.
+
+Témoignages : (Anonymisés et avec consentement) Histoires sur l'impact du programme.
+
+Actualités du Terrain : Nouvelles sur le déroulement des opérations.
+
+Contact
+
+Formulaire de contact pour des questions générales (pas pour le support technique de l'app).
+
+Coordonnées des bureaux de coordination.
+
+Partie 2 : L'Application de Gestion (Nouvelle Architecture pour la partie privée)
+
+C'est ici que l'on intègre VOS champs spécifiques. Cette architecture est ce qu'un utilisateur voit APRÈS s'être connecté. La navigation dépendra de son rôle (Admin, Logisticien, Agent de terrain).
+
+Navigation Principale de l'Application (Après Connexion)
+
+Tableau de Bord (Dashboard)
+
+Vue d'ensemble personnalisée selon le rôle.
+
+Indicateurs Clés (KPIs) :
+
+Quantité totale envoyée vs. Quantité totale reçue (Tonnage).
+
+Taux de perte global (Loss).
+
+Nombre de distributions planifiées vs. terminées pour la semaine/mois.
+
+Nombre de bénéficiaires servis aujourd'hui / cette semaine.
+
+Alertes & Notifications : "Waybill XYZ en retard", "Stock faible pour le produit 'Huile' au site Z".
+
+Accès Rapide : "Créer une nouvelle expédition", "Enregistrer une distribution".
+
+Logistique & Mouvements (Gestion des "Waybills")
+
+Liste des Expéditions : Tableau de bord de toutes les expéditions.
+
+Filtres : Par Date, Location (Site de destination), Transporteur, Statut (En transit, Reçu, Reçu avec pertes).
+
+Colonnes : Waybill Number, Date, Transporteur, Plaque, Driver, Site de Destination, Statut.
+
+Créer/Suivre une Expédition :
+
+Formulaire de Création (Niveau 1) : Saisie des champs : Date, Location, Waybill Number, Batch Number, Transporteur, etc.
+
+Détail des Produits Envoyés : Tableau pour ajouter les lignes de produits : Comm specific (Produits), Type d'emballage, Quantity send, Unit send, Tonne send.
+
+Enregistrer une Réception (sur Site) :
+
+L'utilisateur sur le site de destination retrouve l'expédition via le Waybill Number.
+
+Il saisit les quantités reçues : Quantity receipt, Unit Receipt, Tonne Receipt.
+
+Le système calcule automatiquement le champ Loss.
+
+Champ Obs (Observations) pour noter les écarts.
+
+Mouvements Spéciaux :
+
+Interface dédiée pour enregistrer les Mvmt_Interne (transferts entre entrepôts) et les Return (retours de marchandises).
+
+Distributions (Gestion des Bénéficiaires)
+
+Calendrier des Distributions : Vue calendrier montrant toutes les distributions planifiées par Date et Location (Site).
+
+Suivi de Distribution (Interface Terrain - Niveau 2) :
+
+L'agent de terrain sélectionne la distribution du jour pour son site.
+
+Il voit la liste des ménages/bénéficiaires attendus.
+
+Interface de Saisie Rapide :
+
+Recherche du Ménage / Bénéficiaire (par ID, nom, scan).
+
+Une fois le bénéficiaire trouvé, un formulaire pré-rempli s'affiche avec les quantités prévues.
+
+L'agent confirme (ou ajuste si nécessaire) les quantités distribuées : Farine, Haricot, Huile, Sel.
+
+Le champ Total (en kg ou autre unité) est calculé.
+
+Le système enregistre la Date et le Terminal (ID de l'appareil/agent).
+
+Liste des Bénéficiaires :
+
+Base de données complète des bénéficiaires.
+
+Filtres puissants : Par site, par statut de distribution pour une période donnée ("Afficher tous les bénéficiaires du site X qui N'ONT PAS reçu l'assistance en mai 2024").
+
+Vue détaillée d'un bénéficiaire : Affiche ses informations et l'historique de toutes les assistances reçues.
+
+Rapports & Analyse
+
+Rapport de Rapprochement Logistique : Compare les quantités envoyées, reçues et les pertes par Waybill, par Transporteur, par produit.
+
+Rapport de Couverture de Distribution : Pour un site ou un programme, affiche : Nbr de bénéficiaires ciblés vs. Nbr de bénéficiaires servis (en % et en absolu).
+
+Rapport de Consommation : Quantités totales de chaque produit (Farine, Huile, etc.) distribuées sur une période.
+
+Export des Données : Permettre l'export de n'importe quel rapport en format CSV/Excel.
+
+Administration (Pour les rôles Admin)
+
+Gestion des Utilisateurs : Créer/modifier les comptes et assigner les rôles.
+
+Gestion des Données de Référence :
+
+Locations (Sites de distribution).
+
+Transporteurs.
+
+Produits (Comm specific).
+
+Programmes / Activités.
+
+Gestion des Bénéficiaires : Outils pour l'importation en masse, la déduplication et la gestion des données.
+
+En résumé, l'architecture initiale devient votre façade publique, tandis que la nouvelle architecture de l'application est entièrement conçue autour des processus métier que vous avez décrits, en utilisant directement les noms de champs que vous avez fournis. Cette structure est beaucoup plus claire et fonctionnelle pour un UX designer et pour les développeurs.
